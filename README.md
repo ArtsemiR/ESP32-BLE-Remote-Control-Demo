@@ -1,6 +1,9 @@
 # ESP32 BLE Remote Control Project
+![](Demo-960-720-12.gif)
 
 This sketch demonstrates how to use ESP32 for BLE-based remote control functionalities, including controlling on-board LED, a traffic light leds, and a seven-segment display.
+
+The ESP32 is controlled via an iOS application developed here - https://github.com/ArtsemiR/Swift-ESP32-BLE-Remote-Control-Demo.
 
 ## Code Overview
 
