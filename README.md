@@ -3,9 +3,23 @@
 
 This sketch demonstrates how to use ESP32 for BLE-based remote control functionalities, including controlling on-board LED, a traffic light leds, and a seven-segment display.
 
-The ESP32 is controlled via an iOS application developed here - https://github.com/ArtsemiR/Swift-ESP32-BLE-Remote-Control-Demo.
+The ESP32 is controlled via an iOS application developed here - https://github.com/ArtsemiR/Swift-ESP32-BLE-Remote-Control-Demo
 
-## Code Overview
+## Overview
+A project with setting up Central using an iPhone as an example can be found in this project on Swift+Xcode - https://github.com/ArtsemiR/ESP32-BLE-Remote-Control-Demo
+![](ble_scheme.png)
+The scheme represents a simplified flow of how a central device, such as an iPhone, interacts with a peripheral device through Bluetooth Low Energy (BLE):
+1. The iPhone starts looking for BLE devices nearby.
+2. The peripheral is broadcasting a signal to announce its presence to devices like the iPhone.
+3. The iPhone picks up this signal, learning that the peripheral is available to connect.
+4. The iPhone successfully connects to the peripheral, which then stops broadcasting since it's no longer just advertising but is now connected.
+5. The iPhone asks the peripheral to list its services.
+6. The peripheral sends back information about the services it offers.
+7. The iPhone requests the details of these services, referred to as "characteristics"
+8. The peripheral provides this detailed characteristics information.
+9. With all the necessary information exchanged, the iPhone is now ready to interact with the ESP32 for its intended use.
+
+## Configuration
 
 ### main.cpp
 ### Includes and Defines
