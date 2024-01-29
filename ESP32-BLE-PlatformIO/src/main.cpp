@@ -2,6 +2,8 @@
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
+#include <string>
+#include <cctype>
 
 // UUIDs for the BLE service and characteristic
 #define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
@@ -175,6 +177,16 @@ void resetValues() {
     setLedColor("RED");
 }
 
+bool isInteger(const std::string& str) {
+    if (str.empty() || (!isdigit(str[0]))) {
+        return false;
+    }
+
+    char * p;
+    strtol(str.c_str(), &p, 10);
+
+    return (*p == 0);
+}
 
 // BLE server callback class for handling BLE events
 class MyServerCallbacks: public BLEServerCallbacks {
@@ -208,7 +220,9 @@ class ESP32Callbacks: public BLECharacteristicCallbacks {
             }
 
             // Set the number on the 7-segment display based on received value
-            set7SegmentDisplayNumber(atoi(value.c_str()));
+            if (isInteger(value.c_str())) {
+                set7SegmentDisplayNumber(atoi(value.c_str()));
+            }
         }
     }
 };
